@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { log } from 'console';
+import React, { useState, useEffect } from 'react';
 import './counter.css';
 
 type CounterPropsType = {
@@ -6,10 +7,22 @@ type CounterPropsType = {
   count?: number;
 };
 
-export const CounterComponent = (props: CounterPropsType) => {
+const Counter = (props: CounterPropsType) => {
   const { title } = props;
 
   const [count, setCount] = useState(0);
+
+  console.log('CounterComponent');
+
+  useEffect(() => {
+    console.log('CounterComponent MOUNT');
+  }, []);
+
+  // useEffect(() => {
+  //   console.log('CounterComponent UPDATE');
+
+  //   return () => console.log('CounterComponent WILLUPDATE');
+  // }, [count]);
 
   const decrementHandler = () => {
     // setCount((prev) => {
@@ -29,10 +42,14 @@ export const CounterComponent = (props: CounterPropsType) => {
     <div className="counter_wrapper">
       <h1>{title}</h1>
       <div className="counter_group">
-        <button onClick={decrementHandler}>remove</button>
+        <button disabled={count === 0} onClick={decrementHandler}>
+          remove
+        </button>
         <h2>{count}</h2>
         <button onClick={incrementHandler}>add</button>
       </div>
     </div>
   );
 };
+
+export const CounterComponent = React.memo(Counter, (prev, next) => prev.title === next.title);

@@ -1,0 +1,21 @@
+.wrapper {
+  height: 60px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(144, 144, 238);
+
+  &_logo {
+    color: red;
+    font-size: 20px;
+  }
+  &_title {
+    color: rgb(69, 8, 8);
+  }
+
+  & > ul {
+    display: flex;
+    gap: 20px;
+  }
+}

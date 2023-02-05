@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
+  height: 40px;
+
+   & > Input {
+    font-size: 30px;
+   }
+}
